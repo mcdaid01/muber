@@ -9,8 +9,11 @@ module.exports = {
 	create(req,res){ // another convention is 'create' name
 		
 		const driverProps = req.body
+		
 		Driver.create(driverProps)
 			.then(driver => res.send(driver))
+		
+		
 		
 	}
 }
