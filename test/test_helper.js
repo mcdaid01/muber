@@ -9,9 +9,10 @@ before(done =>{
 		})
 })
 
-beforeEach( done => {
+beforeEach(done => {
 	const { drivers } = mongoose.connection.collections
 	drivers.drop()
-		.then(()=>done())
-		.catch(()=>done()) // first time don't have a collection to drop
+		.then(() => drivers.ensureIndex({ 'geometry.coordinates': '2dsphere' }))
+		.then(() => done())
+		.catch(() => done())
 })

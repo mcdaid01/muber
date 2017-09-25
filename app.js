@@ -11,7 +11,14 @@ if (process.emitWarning.NODE_ENV !=='test') // connects in test_helper. Not else
 
 const app = express()
 app.use(bodyParser.json()) // important called before routes
-
 routes(app)
+
+// middleware to deal with errors
+app.use((err,req,res,next)=>{
+	//console.log('error =',err.message)
+	res.status(422).send(err.message)
+	next()
+})
+
 
 module.exports = app
