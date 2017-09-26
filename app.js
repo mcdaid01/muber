@@ -6,7 +6,8 @@ const bodyParser = require('body-parser')
 mongoose.Promise = global.Promise
 // todo add error handling stuff
 
-if (process.emitWarning.NODE_ENV !=='test') // connects in test_helper. Not else because want to use done callback
+
+if (process.env.NODE_ENV !=='test') // connects in test_helper. Not else because want to use done callback
 	mongoose.connect('mongodb://localhost/muber',{useMongoClient: true})
 
 const app = express()
